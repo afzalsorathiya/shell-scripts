@@ -1,22 +1,26 @@
 #!/bin/bash
 # Define your Hetzner API token
-echo -n "Enter Api Token: "
-read API_TOKEN
+# echo -n "Enter Api Token: "
+# read API_TOKEN
 
+# # Define server parameters
+# echo -n "Enter Server name: "
+# read SERVER_NAME
+# echo -n "Enter Server type: "
+# read SERVER_NAME
+# echo -n "Enter OS Image: "
+# read IMAGE
+# echo -n "Enter Password: "
+# read PASSWORD
 # Define server parameters
-echo -n "Enter Server name: "
-read SERVER_NAME
-echo -n "Enter Server type: "
-read SERVER_NAME
-echo -n "Enter OS Image: "
-read IMAGE
-echo -n "Enter Password: "
-read PASSWORD
-# SERVER_NAME="my-server"
-# SERVER_TYPE="cx21"
-# IMAGE="ubuntu-20.04"
-# PASSWORD="YourPasswordHere"
+API_TOKEN="ryvL897s7uxhdjcDv9khygLmsrf7ITaTrwPjAduaFdMWwGLdSzpnNtPGTtVmoZrd"
+SERVER_NAME="my-server"
+SERVER_TYPE="cx21" 
+IMAGE="ubuntu-20.04"
+PASSWORD="Afzal@3604"
 
+sudo apt-get update
+sudo apt-get install jq
 
 
 # Create a new server
@@ -26,7 +30,7 @@ response=$(curl -X POST -H "Content-Type: application/json" \
      -d '{"name":"'"$SERVER_NAME"'","server_type":"'"$SERVER_TYPE"'","image":"'"$IMAGE"'","start_after_create":true}' \
      "https://api.hetzner.cloud/v1/servers")
 
-# Extract server ID from the response
+# Extract server ID from the response   
 SERVER_ID=$(echo "$response" | jq -r '.server.id')
 
 # Wait for server creation to complete
